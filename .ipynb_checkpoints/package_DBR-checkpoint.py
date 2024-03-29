@@ -19,24 +19,27 @@ def myRound(x, base=5):
     return float(base * round(float(x)/base))
 
 #-----------------------------------
-def SelectPath_RT(path,time,signal):
-    
+def SelectPath_RT(path, time, signal):
     """
     The function "SelectPath_RT" needs to be included in a "for or while loop".
-    
+
     :path: dictionary input describing a path in time. Example: path = {0: 0, 5: 1, 50: 2, 80: 3, 100: 3}
     :time: time vector.
     :signal: signal vector that is being constructed using the input "path" and the vector "time".
-    
+
     The function "SelectPath_RT" takes the last element in the vector "time" and, given the input "path", it appends the correct value to the vector "signal".
-    """    
-    
-    for timeKey in path:
-        if(time[-1] >= timeKey):
-            timeKeyPrevious = timeKey    
-    
-    value = path[timeKeyPrevious]
-    signal.append(value)
+    """
+    try:
+        time_keys = [int(key) for key in path.keys()]
+        time_keys.sort()
+        for timeKey in time_keys:
+            if time[-1] >= timeKey:
+                timeKeyPrevious = timeKey
+        value = path[timeKeyPrevious]
+        signal.append(value)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
 #-----------------------------------
 def Delay_RT(MV,theta,Ts,MV_Delay,MVInit=0):

@@ -214,8 +214,6 @@ class PID:
         self.parameters['Ti'] = float(parameters['Ti']) if 'Ti' in parameters else 0.0
         self.parameters['Td'] = float(parameters['Td']) if 'Td' in parameters else 0.0
 
-
-
 def StabilityMargins(P: Process, C: PID, omega):
     """
     The function "stability_margins" needs to have 2 processes object in paramaters.
